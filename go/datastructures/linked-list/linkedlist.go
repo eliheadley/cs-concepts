@@ -4,18 +4,18 @@ import "fmt"
 
 // Append, Prepend, InsertAfter(node, value), Delete(value), Find(value).
 
-type Node struct {
-	next *Node
+type Node[T any] struct {
+	next *Node[T]
 	val  int
 }
 
-type LinkedList struct {
-	head   *Node
+type LinkedList[T any] struct {
+	head   *Node[T]
 	length int
 }
 
-func (list *LinkedList) add(newVal int) {
-	newNode := &Node{nil, newVal}
+func (list *LinkedList[T]) Append(newVal int) {
+	newNode := &Node[T]{nil, newVal}
 	if list.head == nil {
 		list.head = newNode
 		list.length++
@@ -30,7 +30,7 @@ func (list *LinkedList) add(newVal int) {
 	list.length++
 }
 
-func (list LinkedList) print() {
+func (list LinkedList[T]) Print() {
 	fmt.Print("head->")
 	cur := list.head
 	for cur != nil {
@@ -41,14 +41,14 @@ func (list LinkedList) print() {
 }
 
 func main() {
-	list := LinkedList{}
-	list.print()
+	list := LinkedList[int]{}
+	list.Print()
 
-	list.add(1)
-	list.add(2)
-	list.add(3)
-	list.add(4)
-	list.add(5)
+	list.Append(1)
+	list.Append(2)
+	list.Append(3)
+	list.Append(4)
+	list.Append(5)
 
-	list.print()
+	list.Print()
 }
