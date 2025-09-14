@@ -20,10 +20,9 @@ Each assignment focuses on a classic data structure. You’ll:
 
 | # | Assignment | Key Concepts |
 |---|------------|--------------|
-| 1 | **Dynamic Array (like ArrayList)** | Slices, resizing, append/insert/remove |
-| 2 | **Stack (LIFO)** | Generics, push/pop/peek, error handling |
-| 3 | **Queue (FIFO)** | Slices, circular buffer, enqueue/dequeue |
-| 4 | **Linked List** | Structs, pointers, singly vs doubly linked lists |
+| 1 | **Stack (LIFO)** | Generics, push/pop/peek, error handling |
+| 2 | **Queue (FIFO)** | Slices, circular buffer, enqueue/dequeue |
+| 3 | **Linked List** | Structs, pointers, singly vs doubly linked lists |
 
 ---
 
@@ -31,10 +30,10 @@ Each assignment focuses on a classic data structure. You’ll:
 
 | # | Assignment | Key Concepts |
 |---|------------|--------------|
-| 5 | **Hash Map (basic)** | Buckets, hashing, collision handling |
-| 6 | **Binary Search Tree (BST)** | Recursion, tree traversal, delete operation |
-| 7 | **Min/Max Heap** | Heapify, priority queues |
-| 8 | **Trie (Prefix Tree)** | String processing, nested maps/structs |
+| 4 | **Hash Map (basic)** | Buckets, hashing, collision handling |
+| 5 | **Binary Search Tree (BST)** | Recursion, tree traversal, delete operation |
+| 6 | **Min/Max Heap** | Heapify, priority queues |
+| 7 | **Trie (Prefix Tree)** | String processing, nested maps/structs |
 
 ---
 
@@ -42,10 +41,10 @@ Each assignment focuses on a classic data structure. You’ll:
 
 | # | Assignment | Key Concepts |
 |---|------------|--------------|
-| 9  | **Graph Implementation** | Adjacency list vs matrix, BFS/DFS |
-| 10 | **LRU Cache** | Linked list + hash map, O(1) operations |
-| 11 | **Disjoint Set / Union-Find** | Path compression, union by rank |
-| 12 | **Bloom Filter** | Probabilistic DS, multiple hash functions |
+| 8  | **Graph Implementation** | Adjacency list vs matrix, BFS/DFS |
+| 9  | **LRU Cache** | Linked list + hash map, O(1) operations |
+| 10 | **Disjoint Set / Union-Find** | Path compression, union by rank |
+| 11 | **Bloom Filter** | Probabilistic DS, multiple hash functions |
 
 ---
 
@@ -59,7 +58,88 @@ Each assignment focuses on a classic data structure. You’ll:
 
 ---
 
-## 📝 Example First Assignment
+## ✅ Acceptance Criteria for Each Assignment
+
+Each data structure must:
+
+1. **Be implemented as a reusable type** (struct + methods, using generics where appropriate).
+2. **Include error handling** (e.g., popping from an empty stack returns an error).
+3. **Include unit tests** using the `testing` package:
+    - Happy paths.
+    - Edge cases.
+5. **Optional:** Implement `fmt.Stringer` for readable printing.
+6. **Optional:** Add benchmarks with `go test -bench .`.
+
+---
+
+### 🟩 Beginner Assignments
+
+#### 1. Stack (LIFO)
+- **Required Methods:** `Push`, `Pop`, `Peek`, `Size`.
+- **Behavior:** Last-in-first-out. Popping or peeking from an empty stack returns an error.
+- **Tests:** Push multiple items, pop all, check size.
+
+#### 2. Queue (FIFO)
+- **Required Methods:** `Enqueue`, `Dequeue`, `Peek`, `Size`.
+- **Behavior:** First-in-first-out. Dequeue/peek on empty queue returns an error.
+- **Bonus:** Implement circular buffer behavior.
+
+#### 3. Linked List
+- **Required Methods:** `Append`, `Prepend`, `InsertAfter(node, value)`, `Delete(value)`, `Find(value)`.
+- **Behavior:** Maintain head (and tail for doubly linked).
+- **Tests:** Insert and remove at various positions.
+
+---
+
+### 🟨 Intermediate Assignments
+
+#### 4. Hash Map (basic)
+- **Required Methods:** `Put(key, value)`, `Get(key)`, `Delete(key)`, `Size`.
+- **Behavior:** Handle collisions (separate chaining or open addressing).
+- **Tests:** Insert, retrieve, overwrite, delete, collision cases.
+
+#### 5. Binary Search Tree
+- **Required Methods:** `Insert`, `Find`, `Delete`, Traversals (`InOrder`, `PreOrder`, `PostOrder`).
+- **Behavior:** Maintain BST property. Delete must handle nodes with 0, 1, or 2 children.
+- **Tests:** Insert, delete, traverse.
+
+#### 6. Min/Max Heap
+- **Required Methods:** `Insert`, `ExtractMin` (or `ExtractMax`), `Peek`.
+- **Behavior:** Maintain heap property after each operation.
+- **Tests:** Insert random numbers, extract in order.
+
+#### 7. Trie (Prefix Tree)
+- **Required Methods:** `Insert(word)`, `Search(word)`, `StartsWith(prefix)`.
+- **Behavior:** Support efficient prefix search.
+- **Tests:** Insert multiple words, search prefixes.
+
+---
+
+### 🟧 Advanced Assignments
+
+#### 8. Graph Implementation
+- **Required Methods:** `AddVertex`, `AddEdge`, `RemoveVertex`, `RemoveEdge`, `BFS`, `DFS`.
+- **Behavior:** Support directed or undirected graphs.
+- **Tests:** Build a small graph, traverse.
+
+#### 9. LRU Cache
+- **Required Methods:** `Get(key)`, `Put(key, value)`.
+- **Behavior:** O(1) average time for both operations using a doubly linked list + hash map.
+- **Tests:** Insert over capacity, verify eviction.
+
+#### 10. Disjoint Set / Union-Find
+- **Required Methods:** `Find(x)`, `Union(x, y)`.
+- **Behavior:** Path compression & union by rank.
+- **Tests:** Multiple unions and finds.
+
+#### 11. Bloom Filter
+- **Required Methods:** `Add(item)`, `MightContain(item)`.
+- **Behavior:** Multiple hash functions, low memory, false positives allowed.
+- **Tests:** Known elements return true; non-elements return mostly false.
+
+---
+
+## 📝 Example First Assignment (Stack)
 
 **Implement a Stack in Go using Generics**
 
