@@ -1,4 +1,4 @@
-package main
+package linkedlist
 
 import "fmt"
 
@@ -6,7 +6,8 @@ import "fmt"
 
 type Node[T any] struct {
 	next *Node[T]
-	val  int
+	prev *Node[T]
+	val  T
 }
 
 type LinkedList[T any] struct {
@@ -14,8 +15,8 @@ type LinkedList[T any] struct {
 	length int
 }
 
-func (list *LinkedList[T]) Append(newVal int) {
-	newNode := &Node[T]{nil, newVal}
+func (list *LinkedList[T]) Append(newVal T) {
+	newNode := &Node[T]{nil, nil, newVal}
 	if list.head == nil {
 		list.head = newNode
 		list.length++
@@ -38,17 +39,4 @@ func (list LinkedList[T]) Print() {
 		cur = cur.next
 	}
 	fmt.Println("end")
-}
-
-func main() {
-	list := LinkedList[int]{}
-	list.Print()
-
-	list.Append(1)
-	list.Append(2)
-	list.Append(3)
-	list.Append(4)
-	list.Append(5)
-
-	list.Print()
 }
