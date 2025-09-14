@@ -16,8 +16,7 @@ class Circle:
         return True if value >= 0 else False
         
 
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     # Input width and height from the user
     radius = -1
     while not Circle.is_valid_radius(radius):
@@ -27,3 +26,7 @@ if __name__ == "__main__":
     print(f"This is a more exact area: {my_circle.calculate_area()}")
     Circle.set_pi(3.14)
     print(f"This is a less exact area: {my_circle.calculate_area()}")
+    
+
+
+ 
