@@ -7,15 +7,15 @@ import (
 
 // Append, Prepend, InsertAfter(node, value), Delete(value), Find(value).
 
-var IndexOutOfBounds = errors.New("Index is out of bounds for the current size of the list")
+var IndexOutOfBounds = errors.New("index out of bounds")
 
-type Node[T any] struct {
+type Node[T comparable] struct {
 	next *Node[T]
 	prev *Node[T]
 	val  T
 }
 
-type LinkedList[T any] struct {
+type LinkedList[T comparable] struct {
 	head   *Node[T]
 	tail   *Node[T]
 	length int
@@ -82,12 +82,53 @@ func (list *LinkedList[T]) InsertAfter(index int, newVal T) error {
 	return nil
 }
 
+func (list *LinkedList[T]) Delete(value T) bool {
+	if list.length == 0 {
+		return false
+	}
+
+	// Find the node with the provided value
+	cur := list.head
+	for cur.val != value {
+		cur = cur.next
+	}
+
+	// Value was not found
+	if cur == nil {
+		return false
+	}
+
+	// Last node in the list
+	if cur.next == nil {
+		previous := cur.prev
+		cur.prev = nil
+		previous.next = nil
+		list.tail = previous
+		// First node in the list
+	} else if cur.prev == nil {
+		next := cur.next
+		cur.next = nil
+		next.prev = nil
+		list.head = next
+	} else {
+		previous := cur.prev
+		next := cur.next
+		cur.next = nil
+		cur.prev = nil
+		next.prev = previous
+		previous.next = next
+	}
+
+	list.length--
+	return true
+}
+
 func (list LinkedList[T]) Print() {
 	fmt.Print("head->")
 	cur := list.head
-	for cur != nil {
+	for cur.next != nil {
 		fmt.Printf("[%v]<-->", cur.val)
 		cur = cur.next
 	}
-	fmt.Println("<-tail")
+	fmt.Printf("[%v]<-tail\n", cur.val)
 }
